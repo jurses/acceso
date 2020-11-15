@@ -1,9 +1,11 @@
 package vista;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -14,11 +16,27 @@ public class Vista extends VBox{
 	private TextField tf_user;
 	private PasswordField pf_pass;
 	private Button bt_accept;
+	private Alert access_denied;
+	private Alert access_granted;
 	private Button bt_dismiss;
 	
 	public Vista()
 	{
 		super();
+		
+		
+		
+		access_granted = new Alert(AlertType.CONFIRMATION);
+		access_denied = new Alert(AlertType.ERROR);
+		
+		access_granted.setTitle("Iniciar Sesión");
+		access_denied.setTitle("Iniciar Sesión");
+
+		access_granted.setHeaderText("Para dentro");
+		access_granted.setContentText("Para dentro");
+
+		access_denied.setHeaderText("No entras");
+		access_denied.setContentText("No entras");	
 		
 		l_user = new Label("Usuario:");
 		l_password = new Label("Password:");
@@ -42,6 +60,15 @@ public class Vista extends VBox{
 		this.getChildren().add(hb_buttons);
 	}
 	
+	public Alert get_access()
+	{
+		return access_granted;
+	}
+	public Alert get_denied()
+	{
+		return access_denied;
+	}
+	
 	public TextField get_user()
 	{
 		return tf_user;
@@ -50,6 +77,11 @@ public class Vista extends VBox{
 	public PasswordField get_password()
 	{
 		return pf_pass;
+	}
+	
+	public Button get_cancel()
+	{
+		return bt_dismiss;
 	}
 	
 	public Button get_accept()
