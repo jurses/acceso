@@ -17,12 +17,15 @@ public class CsvReader {
 	{
 		String line;
 		BufferedReader bf;
+		user_pass = new HashMap<String, String>();
 		try {
 			bf = new BufferedReader(new FileReader(name));
 			while((line = bf.readLine()) != null)
 			{
+				System.out.println(line);
 				String[] user_pass_sp;
 				user_pass_sp = line.split(",");
+								
 				user_pass.put(user_pass_sp[0], user_pass_sp[1]);
 			}
 		} catch (FileNotFoundException e) {
